@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up & Log In Flip-Card</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Ubuntu:wght@300;400&display=swap");
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      background-image: url(./mk.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .inner-Wrapper {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #88828270;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flip-card {
+      background-color: transparent;
+
+      perspective: 1000px;
+      margin: 20px;
+    }
+
+    .flip-card-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card-inner2 {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+    }
+
+    .flip-card-front {
+      width: 300px;
+      height: 350px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+      width: 350px;
+      height: 515px;
+
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .login-Text {
+      padding: 20px;
+    }
+
+    .login {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+    }
+
+    .LoginText {
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      flex-direction: column;
+      margin-top: 30px;
+    }
+
+    .inputText {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 17px;
+    }
+
+    .input {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid black;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #00000080;
+    }
+
+    input:-webkit-autofill {
+      -webkit-background-clip: text;
+    }
+
+    .bottomText {
+      margin-top: 30px;
+      font-family: "Ubuntu", sans-serif;
+      font-size: 14px;
+    }
+
+    .signupBtn:hover {
+      cursor: pointer;
+      color: red;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 20px;
+      background: #52d468;
+      border: none;
+      outline: none;
+      font-size: 19px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+      transition-duration: 300ms;
+    }
+
+    .btn:hover {
+      background: #43d25a;
+      cursor: pointer;
+    }
+
+    .pass {
+      position: relative;
+    }
+
+    .icon {
+      position: absolute;
+      top: 45%;
+      right: 0;
+    }
+
+    .password {
+      display: none;
+    }
+  </style>
+  <!-------------- Md Majidul Islam Khan (Noman) ---------------->
+</head>
+
+<body>
+  <div class="container">
+    <div class="inner-Wrapper">
+      <div class="flip-card">
+        <div class="flip-card-inner" id="inner">
+          <div class="flip-card-front">
+            <div class="login-Text">
+              <h1 class="login">Log In</h1>
+              <form id="myForm">
+                <div class="LoginText">
+                  <label for="email" class="inputText">Email :</label>
+                  <input type="email" id="email" name="email" placeholder="email" class="input" />
+                </div>
+                <div class="LoginText pass">
+                  <label for="password" class="inputText">Password :</label>
+                  <input type="password" id="password" name="password" placeholder="password" class="input" />
+                  <input type="checkbox" id="eyeoff2" class="password" />
+                  <label for="eyeoff2" id="eye" onclick="show()">
+                    <i class="fa-solid fa-eye icon"></i>
+                  </label>
+                  <label for="eyeoff2" id="eyeoff" onclick="hide()">
+                    <i class="fa-solid fa-eye-slash icon"></i>
+                  </label>
+                </div>
+                <p class="bottomText">
+                  Don't have an account?
+                  <span class="signupBtn" id="signup" onclick="changeClass()">Sign Up</span>
+                </p>
+                <button class="btn">Log In</button>
+              </form>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="login-Text">
+              <h1 class="login">Sign Up</h1>
+              <form id="form2">
+                <div class="LoginText">
+                  <label for="first-name" class="inputText">First Name :</label>
+                  <input type="text" id="first-name" name="first-name" placeholder="first-name" class="input" />
+                </div>
+                <div class="LoginText">
+                  <label for="last-Name" class="inputText">Last Name :</label>
+                  <input type="text" id="last-Name" name="last-Name" placeholder="last-Name" class="input" />
+                </div>
+                <div class="LoginText">
+                  <label for="email-signUp" class="inputText">Email :</label>
+                  <input type="email" id="email-signUp" name="email" placeholder="email" class="input" />
+                </div>
+                <div class="LoginText pass">
+                  <label for="password-signUp" class="inputText">Password :</label>
+                  <input type="password" id="password-signUp" name="password" placeholder="password" class="input" />
+                  <input type="checkbox" id="eyeoff4" class="password" />
+                  <label for="eyeoff4" id="eye3" onclick="show2()">
+                    <i class="fa-solid fa-eye icon"></i>
+                  </label>
+                  <label for="eyeoff4" id="eyeoff5" onclick="hide2()">
+                    <i class="fa-solid fa-eye-slash icon"></i>
+                  </label>
+                </div>
+                <p class="bottomText">
+                  Already have an account?
+                  <span class="signupBtn" id="login" onclick="rotated()">Log In</span>
+                </p>
+                <button class="btn">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------- Md Majidul Islam Khan (Noman) ---------------->
+  <script>
+    const form = document.getElementById("myForm");
+
+    const changeClass = () => {
+      document
+        .getElementById("signup")
+        .addEventListener(
+          "click",
+          document.getElementById("inner").classList.add("flip-card-inner2")
+        );
+    };
+
+    const rotated = () => {
+      document
+        .getElementById("login")
+        .addEventListener(
+          "click",
+          document
+            .getElementById("inner")
+            .classList.remove("flip-card-inner2")
+        );
+    };
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      event.target.reset();
+    });
+    const form2 = document.getElementById("form2");
+
+    form2.addEventListener("submit", function (event) {
+      event.preventDefault();
+      event.target.reset();
+    });
+    const hide = () => {
+      document.getElementById("eyeoff").style.display = "none";
+      document.getElementById("eye").style.display = "block";
+    };
+    const show = () => {
+      document.getElementById("eyeoff").style.display = "block";
+      document.getElementById("eye").style.display = "none";
+    };
+
+    let password = document.getElementById("password");
+
+    let showPass = document.getElementById("eyeoff2");
+    showPass.addEventListener("change", () => {
+      if (showPass.checked) {
+        password.type = "text";
+      } else {
+        password.type = "password";
+      }
+    });
+
+    const hide2 = () => {
+      document.getElementById("eyeoff5").style.display = "none";
+      document.getElementById("eye3").style.display = "block";
+    };
+    const show2 = () => {
+      document.getElementById("eyeoff5").style.display = "block";
+      document.getElementById("eye3").style.display = "none";
+    };
+
+    let password2 = document.getElementById("password-signUp");
+
+    let showPass2 = document.getElementById("eyeoff4");
+    showPass2.addEventListener("change", () => {
+      if (showPass2.checked) {
+        password2.type = "text";
+      } else {
+        password2.type = "password";
+      }
+    });
+  </script>
+</body>
+
+</html>
